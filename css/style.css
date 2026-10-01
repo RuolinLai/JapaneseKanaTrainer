@@ -1,0 +1,32 @@
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f7f6f3;--fg:#1c1c1e;--card:#fff;--bd:#e8e6e1;--ac:#2b3a67;--acs:#e9ecf5;--red:#d1372f;--ok:#1f9d55;--bad:#d1372f;--mut:#8a8a90}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111214;--fg:#f2f2f3;--card:#1b1c1f;--bd:#2b2d31;--ac:#a5b4ec;--acs:#22273a;--red:#ff6b62;--ok:#4ade80;--bad:#ff6b62;--mut:#8a8a90}}
+:root[data-theme="dark"]{--bg:#111214;--fg:#f2f2f3;--card:#1b1c1f;--bd:#2b2d31;--ac:#a5b4ec;--acs:#22273a;--red:#ff6b62;--ok:#4ade80;--bad:#ff6b62;--mut:#8a8a90}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,"Hiragino Sans","PingFang SC","Noto Sans JP",system-ui,sans-serif}
+main{max-width:600px;margin:0 auto;padding:16px 16px 40px}
+button,select{font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:8px 14px;cursor:pointer;transition:background .15s}
+button:hover{background:var(--acs)}button:focus-visible,select:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.seg{display:flex;background:var(--acs);border-radius:12px;padding:4px;margin-bottom:16px}
+.seg button{flex:1;border:0;background:none;border-radius:9px;color:var(--mut)}
+.seg button.on{background:var(--card);color:var(--fg);font-weight:600;box-shadow:0 1px 2px #0002}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.chips button{border-radius:99px;padding:5px 14px;font-size:14px}
+.chips button.on{background:var(--ac);border-color:var(--ac);color:var(--bg)}
+.panel{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px}
+.grid{display:grid;gap:8px}
+.cell{border:0;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px 2px;text-align:center;line-height:1.25}
+.cell b{display:block;font-size:26px;font-weight:500}.cell span{display:block;font-size:15px;color:var(--mut)}.cell i{font-style:normal;font-size:12px;color:var(--ac)}
+.gap{visibility:hidden}
+.prompt{font-size:64px;text-align:center;line-height:1.2;min-height:84px;display:flex;align-items:center;justify-content:center;font-weight:500}
+.center{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.pri{background:var(--ac);color:var(--bg);border-color:var(--ac)}.pri:hover{background:var(--ac);opacity:.9}
+canvas{width:100%;max-width:340px;aspect-ratio:320/220;display:block;margin:12px auto 0;border-radius:14px;background:var(--bg);border:1px solid var(--bd);touch-action:none}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.opts button{font-size:30px;padding:16px}
+.opts .right{background:var(--ok);border-color:var(--ok);color:#fff}.opts .wrong{background:var(--bad);border-color:var(--bad);color:#fff}
+.hint{text-align:center;color:var(--ac);font-weight:600;font-size:15px;margin-top:2px}.mrow{display:grid;grid-template-columns:auto 1fr auto;gap:0 14px;align-items:center;text-align:left;width:100%;margin-bottom:8px;padding:12px 14px;border-radius:14px}.mrow b{font-size:24px;font-weight:500}.mrow span{color:var(--mut);font-size:13px}.mrow em{font-style:normal;text-align:right;color:var(--bad);font-weight:600}.mrow em small{display:block;color:var(--mut);font-weight:400;font-size:12px}.stat{text-align:center;color:var(--mut);margin-top:14px;font-size:14px}
+.res{text-align:center;font-size:18px;margin-top:12px;font-weight:600}.res.ok{color:var(--ok)}.res.bad{color:var(--bad)}
+svg.sv{width:100%;display:block;margin:8px auto;background:var(--bg);border-radius:14px}
+.st,.gh{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:4}.st{stroke:var(--fg)}.gh{stroke:var(--bd)}.sn{font-size:8px;fill:var(--red);font-weight:600}
+dialog{border:1px solid var(--bd);border-radius:20px;background:var(--card);color:var(--fg);width:min(92vw,400px);padding:20px}
+dialog::backdrop{background:#0006}
+h3{margin:0;font-weight:500;font-size:22px}

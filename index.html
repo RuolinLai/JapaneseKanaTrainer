@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Kana Trainer</title>
+<link rel="stylesheet" href="css/style.css"></head><body><main>
+<div class="seg"><button data-t="table" class="on">Chart</button><button data-t="q1">Write</button><button data-t="q2">Choose</button><button data-t="mk">Mistakes</button></div>
+
+<section id="table"><div class="chips" id="gt"></div><div class="grid" id="tg"></div></section>
+
+<dialog id="dlg"><div style="display:flex;justify-content:space-between;align-items:center"><h3 id="dt"></h3><button id="dx" aria-label="Close">✕</button></div>
+<div class="chips" style="margin:12px 0 0"><button id="dh" class="on">Hiragana</button><button id="dk">Katakana</button></div>
+<div id="dsv"></div><div id="tw" hidden><canvas id="tcv" width="320" height="220"></canvas><div class="center"><button id="tclr">Clear</button><button id="tchk" class="pri">Check</button></div></div><div class="res" id="tres"></div><div class="center" style="margin-top:0"><button id="try">Try writing</button><button id="rp">Replay strokes</button><button id="pl" class="pri">Play sound</button></div></dialog>
+
+<section id="mk" hidden><div class="stat" id="ms" style="margin:0 0 12px"></div>
+ <div class="center" style="margin:0 0 14px"><button id="mp1" class="pri">Practice: Write</button><button id="mp2" class="pri">Practice: Choose</button><button id="mc">Clear all</button></div><div id="ml"></div></section>
+<section id="q1" hidden><div class="settings"></div>
+ <div class="panel"><div class="prompt" id="p1"></div><div class="hint" id="h1"></div>
+ <canvas id="cv" width="320" height="220"></canvas>
+ <div class="center" id="b1"><button id="clr">Clear</button><button id="tp" title="Use your trackpad as a pen">Trackpad mode</button><button id="sub" class="pri">Check</button></div>
+ <div class="stat" id="tph" hidden>Trackpad mode: slide one finger to write; lift or pause to end a stroke. Two-finger scroll moves the pen without writing (F flips direction). Enter checks / next · Backspace clears · Esc exits</div><div class="res" id="r1"></div><div id="a1"></div>
+ <div class="center"><button id="nx1" class="pri" hidden>Next</button></div>
+ <div class="stat" id="s1"></div></div></section>
+
+<section id="q2" hidden><div class="settings"></div>
+ <div class="panel"><div class="prompt" id="p2"></div><div class="hint" id="h2"></div><div class="opts" id="o2"></div>
+ <div class="center"><button id="nx2" class="pri" hidden>Next</button></div><div class="stat" id="s2"></div></div></section>
+<div class="stat">Stroke data: <a href="https://kanjivg.tagaini.net" target="_blank" rel="noopener">KanjiVG</a> (CC BY-SA 3.0)</div></main>
+<script src="js/stroke-data.js"></script>
+<script src="js/data.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/strokes.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/recognition.js"></script>
+<script src="js/pad.js"></script>
+<script src="js/quiz-write.js"></script>
+<script src="js/try-write.js"></script>
+<script src="js/quiz-choose.js"></script>
+<script src="js/mistakes.js"></script></body></html>
