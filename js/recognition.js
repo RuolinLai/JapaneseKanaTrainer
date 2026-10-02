@@ -21,7 +21,44 @@ function tpl(ch){if(TC[ch])return TC[ch];const cs=[...ch],W=109*cs.length,it=[];
  const S=it.map(([p,dx,d])=>{const e=document.createElementNS(NS,'path');e.setAttribute('d',d);SV.append(e);const L=e.getTotalLength(),o=[];for(let k=0;k<K;k++){const q=e.getPointAtLength(L*k/(K-1));o.push([(q.x+dx)*s+ox,q.y*s+oy])}e.remove();return o});
  const m=grab(x);return TC[ch]={m,d:dil(m),n:it.length,S}}
 const cov=(a,b)=>{let n=0,h=0;for(let i=0;i<a.length;i++)if(a[i]){n++;if(b[i])h++}return n?h/n:0};
-function sscore(us,ts){if(us.length!==ts.length)return null;let tot=0;us.forEach((a,i)=>{const b=ts[i];let d=0,e=0;for(let k=0;k<K;k++){d+=Math.hypot(a[k][0]-b[k][0],a[k][1]-b[k][1]);e+=Math.hypot(a[K-1-k][0]-b[k][0],a[K-1-k][1]-b[k][1])}tot+=Math.min(d,e+40)/K});return Math.max(0,1-tot/us.length/14)}
+
+function sscore(us, ts) {
+  if (us.length !== ts.length) return 0; 
+  let tot = 0;
+  us.forEach((a, i) => {
+    const b = ts[i];
+    let d = 0, e = 0;
+    for (let k = 0; k < K; k++) {
+      d += Math.hypot(a[k][0] - b[k][0], a[k][1] - b[k][1]);
+      e += Math.hypot(a[K - 1 - k][0] - b[k][0], a[K - 1 - k][1] - b[k][1]);
+    }
+    tot += Math.min(d, e + 40) / K;
+  });
+  return Math.max(0, 1 - tot / us.length / 15);
+}
+
+function recog(st, cands) {
+  const f = userFit(st), u = userMask(st, f), ud = dil(u, 5),
+        us = st.map(l => res(l).map(p => [p[0]*f[0]+f[1], p[1]*f[0]+f[2]]));
+  
+  return cands.map(c => {
+    const t = tpl(c);
+    const r = (cov(u, t.d) + cov(t.m, ud)) / 2;
+    let s = sscore(us, t.S);
+    
+
+    let finalScore;
+    if (us.length !== t.n) {
+      const diffPenalty = 0.03 * Math.abs(us.length - t.n);
+      finalScore = Math.max(0, r * 0.85 - diffPenalty);
+    } else {
+      finalScore = 0.4 * r + 0.6 * s;
+    }
+    
+    return [c, finalScore];
+  }).sort((a, b) => b[1] - a[1]);
+}
+
 function recog(st,cands){const f=userFit(st),u=userMask(st,f),ud=dil(u),us=st.map(l=>res(l).map(p=>[p[0]*f[0]+f[1],p[1]*f[0]+f[2]]));
  return cands.map(c=>{const t=tpl(c),r=(cov(u,t.d)+cov(t.m,ud))/2,s=sscore(us,t.S);return[c,s==null?r-.06*Math.abs(st.length-t.n)-.03:.4*r+.6*s]}).sort((a,b)=>b[1]-a[1])}
-function judge(st,cands,ans){const r=recog(st,cands);return{got:r[0][0],ok:r[0][0]===ans||(!!r[1]&&r[1][0]===ans&&r[0][1]-r[1][1]<.12)}}
+function judge(st,cands,ans){const r=recog(st,cands);return{got:r[0][0],ok:r[0][0]===ans||(!!r[1]&&r[1][0]===ans&&r[0][1]-r[1][1]<.1)}}
